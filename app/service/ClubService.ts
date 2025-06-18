@@ -5,7 +5,7 @@ class ClubService{
     crear(data:<Club>){
        return await Club.create(data)
     }
-    listar(){
+    Listar(){
         return await Club.query()
     }
 

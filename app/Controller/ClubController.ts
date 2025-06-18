@@ -21,7 +21,7 @@ class ClubController{
             return Response.json({datos:List})
         }catch{
             return Response.json({error:"error en listar los clubes"})
-            
+
         }
     }
 }
