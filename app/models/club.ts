@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon'
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm'
-import { BelongsTo } from '@adonisjs/lucid/types/relations'
+import { BaseModel, column,belongsTo,type BelongsTo } from '@adonisjs/lucid/orm'
+import Estadio from './estadio.js'
+
 
 export default class Club extends BaseModel {
-  @column()
+  @column({ isPrimary: true,columnName:'codClub' })
   declare codClub: number
 
   @column()
@@ -21,7 +22,7 @@ export default class Club extends BaseModel {
   @column()
   declare provincia:string
 
-  @column()
+  @column({columnName:'cosPostal'})
   declare cosPostal:string
 
   @column()
@@ -36,7 +37,7 @@ export default class Club extends BaseModel {
   @column()
   declare fax:string
 
-  @column()
+  @column({columnName:'anioFundacion'})
   declare anioFundacion:number
 
   @column()
@@ -54,6 +55,8 @@ export default class Club extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
-  @belongsTo(()=>Club)
-  declare club:BelongsTo<typeof Club>
+  @belongsTo(()=>Estadio,{
+    foreignKey:'codClub',
+  })
+  declare estadios:BelongsTo<typeof Estadio>
 }
